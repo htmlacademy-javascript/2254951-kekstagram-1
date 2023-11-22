@@ -1,6 +1,5 @@
-// Функция для проверки, является ли строка палиндромом.
 const isPalindrom = (string) => {
-  const tempString  = string
+  const tempString = string
   .toLowerCase()
   .replaceAll(' ', '');
 
@@ -12,7 +11,6 @@ const isPalindrom = (string) => {
   return tempString === reverseString;
 };
 
-//Функция, которая принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа. Если в строке нет ни одной цифры, функция должна вернуть NaN
 const extractNumber = (string) => {
   if (typeof string === 'number') {
     return string;
@@ -26,4 +24,14 @@ const extractNumber = (string) => {
   }
 
   return parseInt(result, 10);
+};
+
+const myPadStart = (string, minLength, pad) => {
+  const actualPad = minLength - string.length;
+
+  if (actualPad <= 0) {
+    return string;
+  }
+
+  return pad.slice(0, actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
 };

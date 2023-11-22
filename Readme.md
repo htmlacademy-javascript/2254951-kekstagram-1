@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Иляна Гаврилова](https://up.htmlacademy.ru/javascript-individual/1/user/2254951).
-* Наставник: `Неизвестно`.
+* Наставник: [Мария Филиппова](https://htmlacademy.ru/profile/id136678).
 
 ---
 

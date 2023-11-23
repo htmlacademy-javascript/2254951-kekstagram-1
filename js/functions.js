@@ -36,13 +36,7 @@ const myPadStart = (string, minLength, pad) => {
   return pad.slice(0, actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
 };
 
-const isLessOrEqual = (string, length) => {
-  if (string.length <= length) {
-    return true;
-  }
-
-  return false;
-};
+const isLessOrEqual = (string, length) => string.length <= length;
 
 isPalindrom('топот');
 isPalindrom('ДовОд');

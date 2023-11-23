@@ -1,13 +1,13 @@
 const isPalindrom = (string) => {
   const tempString = string
-  .toLowerCase()
-  .replaceAll(' ', '');
+    .toLowerCase()
+    .replaceAll(' ', '');
 
-  let reverseString = "";
+  let reverseString = '';
   for (let i = tempString.length - 1; i >= 0; i--) {
     reverseString += tempString.at(i);
   }
-  console.log(reverseString);
+
   return tempString === reverseString;
 };
 
@@ -43,3 +43,27 @@ const isLessOrEqual = (string, length) => {
 
   return false;
 };
+
+isPalindrom('топот');
+isPalindrom('ДовОд');
+isPalindrom('Кекс');
+isPalindrom('Лёша на полке клопа нашёл ');
+
+extractNumber('2023 год');
+extractNumber('ECMAScript 2022');
+extractNumber('1 кефир, 0.5 батона');
+extractNumber('агент 007');
+extractNumber('а я томат');
+extractNumber(2023);
+extractNumber(-1);
+extractNumber(1.5);
+
+myPadStart('1', 2, '0');
+myPadStart('1', 4, '0');
+myPadStart('q', 4, 'werty');
+myPadStart('q', 4, 'we');
+myPadStart('qwerty', 4, '0');
+
+isLessOrEqual('проверяемая строка', 20);
+isLessOrEqual('проверяемая строка', 18);
+isLessOrEqual('проверяемая строка', 10);

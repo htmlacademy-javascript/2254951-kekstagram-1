@@ -33,7 +33,7 @@ const getRandomInteger = (a, b) => {
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const createId = () => {
-  const id = 0;
+  let id = 0;
 
   return () => {
     id += 1;
@@ -53,9 +53,11 @@ const createComment = () => ({
 });
 
 const createImage = (index) => ({
-  id: createId;
-  url: photos/{{index}}.jpg, // я не знаю что тут делать :(
+  id: createId,
+  url: photos/{index}.jpg, // я не знаю что тут делать :(
   description: getRandomArrayElement(DESCRIPTONS),
   likes: getRandomInteger(LIKE_COUNT_MIN, LIKE_COUNT_MAX),
   comments: Array.from({ length: getRandomInteger(0, MESSAGE_COUNT)}, createComment)
 });
+
+// ошибки в линт, тк не могу понять как использовать эти моменты

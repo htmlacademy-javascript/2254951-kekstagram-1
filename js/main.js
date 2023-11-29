@@ -21,3 +21,5 @@ const DESCRIPTONS = [
   'Напишите в комментариях свой любимый фильм :) #needsomethingtowatch #recommendations #movie #watch',
   'Хочу вернуться в тот день :( #wannagoback #tbt #sun #sea #travel #travelgram'
 ];
+const NAMES = ['Мария', 'Александр', 'Алексей', 'Игорь', 'Арина', 'Регина', 'Михаил', 'Виктория'];
+

@@ -31,3 +31,5 @@ const getRandomInteger = (a, b) => {
 };
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
+const createMessage = () => Array.from({length: getRandomInteger}, () => getRandomArrayElement(MESSAGE_VALUE)),join(' ');

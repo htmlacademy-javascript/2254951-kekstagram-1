@@ -32,4 +32,30 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-const createMessage = () => Array.from({length: getRandomInteger}, () => getRandomArrayElement(MESSAGE_VALUE)),join(' ');
+const createId = () => {
+  const id = 0;
+
+  return () => {
+    id += 1;
+    return id;
+  };
+};
+
+const getCommentId = createId;
+
+const createMessage = () => Array.from({length: getRandomInteger}, () => getRandomArrayElement(MESSAGE_VALUE)).join(' ');
+
+const createComment = () => ({
+  id: getCommentId(),
+  avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
+  message: createMessage(),
+  name: getRandomArrayElement(NAMES),
+});
+
+const createImage = (index) => ({
+  id: createId;
+  url: photos/{{index}}.jpg, // я не знаю что тут делать :(
+  description: getRandomArrayElement(DESCRIPTONS),
+  likes: getRandomInteger(LIKE_COUNT_MIN, LIKE_COUNT_MAX),
+  comments: Array.from({ length: getRandomInteger(0, MESSAGE_COUNT)}, createComment)
+});

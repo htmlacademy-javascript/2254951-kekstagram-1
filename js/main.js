@@ -1,5 +1,5 @@
 const IMAGE_COUNT = 25;
-const LIKE = {
+const Like = {
   MIN: 15,
   MAX: 200
 };
@@ -7,11 +7,11 @@ const AVATAR = {
   MIN: 1,
   MAX: 6
 };
-const MESSAGES = {
+const Message = {
   MIN: 1,
   MAX: 6
 };
-const MESSAGES_VALUE = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -51,7 +51,7 @@ const createId = () => {
 
 const getCommentId = createId();
 
-const createMessage = () => Array.from({length: getRandomInteger}, () => getRandomArrayElement(MESSAGES_VALUE)).join(' ');
+const createMessage = () => Array.from({length: getRandomInteger}, () => getRandomArrayElement(MESSAGES)).join(' ');
 
 const createComment = () => ({
   id: getCommentId(),
@@ -64,8 +64,8 @@ const createImage = (index) => ({
   id: index,
   url: 'photos/{index}.jpg',
   description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomInteger(LIKE),
-  comments: Array.from({ length: getRandomInteger(MESSAGES)}, createComment)
+  likes: getRandomInteger(Like),
+  comments: Array.from({ length: getRandomInteger(Message)}, createComment)
 });
 
 const images = Array.from({length: IMAGE_COUNT}, (_, i) => createImage(i));

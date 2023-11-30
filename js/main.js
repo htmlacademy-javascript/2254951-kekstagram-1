@@ -1,9 +1,17 @@
 const IMAGE_COUNT = 25;
-const LIKE_COUNT_MIN = 15;
-const LIKE_COUNT_MAX = 200;
-const AVATAR_COUNT = 6;
-const MESSAGE_COUNT = 6;
-const MESSAGE_VALUE = [
+const LIKE = {
+  MIN: 15,
+  MAX: 200
+};
+const AVATAR = {
+  MIN: 1,
+  MAX: 6
+};
+const MESSAGES = {
+  MIN: 1,
+  MAX: 6
+};
+const MESSAGES_VALUE = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -11,7 +19,7 @@ const MESSAGE_VALUE = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-const DESCRIPTONS = [
+const DESCRIPTIONS = [
   'Я не слежу за тенденциями, я их устанавливаю',
   'Наедине с природой #nature #freedom #peace',
   'В конце грозы всегда появляется радуга',
@@ -41,23 +49,25 @@ const createId = () => {
   };
 };
 
-const getCommentId = createId;
+const getCommentId = createId();
 
-const createMessage = () => Array.from({length: getRandomInteger}, () => getRandomArrayElement(MESSAGE_VALUE)).join(' ');
+const createMessage = () => Array.from({length: getRandomInteger}, () => getRandomArrayElement(MESSAGES_VALUE)).join(' ');
 
 const createComment = () => ({
   id: getCommentId(),
-  avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(AVATAR)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES),
 });
 
 const createImage = (index) => ({
-  id: createId,
-  url: photos/{index}.jpg, // я не знаю что тут делать :(
-  description: getRandomArrayElement(DESCRIPTONS),
-  likes: getRandomInteger(LIKE_COUNT_MIN, LIKE_COUNT_MAX),
-  comments: Array.from({ length: getRandomInteger(0, MESSAGE_COUNT)}, createComment)
+  id: index,
+  url: 'photos/{index}.jpg',
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomInteger(LIKE),
+  comments: Array.from({ length: getRandomInteger(MESSAGES)}, createComment)
 });
 
-// ошибки в линт, тк не могу понять как использовать эти моменты
+const images = Array.from({length: IMAGE_COUNT}, (_, i) => createImage(i));
+
+images();

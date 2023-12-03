@@ -1,4 +1,4 @@
-import {getRandomArrayElement} from './util.js';
+import {getRandomArrayElement, getRandomInteger, createId} from './util.js';
 
 const IMAGE_COUNT = 25;
 const Like = {
@@ -33,15 +33,6 @@ const DESCRIPTIONS = [
 ];
 const NAMES = ['Мария', 'Александр', 'Алексей', 'Игорь', 'Арина', 'Регина', 'Михаил', 'Виктория'];
 
-const createId = () => {
-  let id = 0;
-
-  return () => {
-    id += 1;
-    return id;
-  };
-};
-
 const getCommentId = createId();
 
 const createMessage = () => Array.from({length: getRandomInteger}, () => getRandomArrayElement(MESSAGES)).join(' ');
@@ -64,3 +55,6 @@ const createImage = (index) => ({
 const images = Array.from({length: IMAGE_COUNT}, (_, i) => createImage(i));
 
 images();
+
+export { getCommentId, createMessage, createComment, images };
+

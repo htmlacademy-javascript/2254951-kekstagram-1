@@ -54,7 +54,5 @@ const createImage = (index) => ({
 
 const images = Array.from({length: IMAGE_COUNT}, (_, i) => createImage(i));
 
-images();
-
-export { getCommentId, createMessage, createComment, images };
+export { images };
 

@@ -48,11 +48,13 @@ const createImage = (index) => ({
   id: index,
   url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomInteger(Like),
-  comments: Array.from({ length: getRandomInteger(Message)}, createComment)
+  likes: getRandomInteger(Like.MIN, Like.MAX),
+  comments: Array.from({ length: getRandomInteger(Message.MIN, Message.MAX)}, createComment)
 });
 
-const images = Array.from({length: IMAGE_COUNT}, (_, i) => createImage(i++));
+const images = () => Array.from({ length: IMAGE_COUNT }, (_, i) => createImage(i + 1));
+
+images();
 
 export { images };
 

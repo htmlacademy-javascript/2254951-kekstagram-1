@@ -3,9 +3,10 @@ const container = document.querySelector('.pictures');
 
 const createThumbnail = ({ url, description, comments, likes }) => {
   const thumbnail = thumbnailTemplate.cloneNode(true);
+  const picture = thumbnail.querySelector('.picture__img');
 
-  thumbnail.querySelector('.picture__img').src = url;
-  thumbnail.querySelector('.picture__img').alt = description;
+  picture.src = url;
+  picture.alt = description;
   thumbnail.querySelector('.picture__comments').textContent = comments.length;
   thumbnail.querySelector('.picture__likes').textContent = likes;
 

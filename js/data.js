@@ -52,9 +52,7 @@ const createImage = (index) => ({
   comments: Array.from({ length: getRandomInteger(Message.MIN, Message.MAX)}, createComment)
 });
 
-const images = () => Array.from({ length: IMAGE_COUNT }, (_, i) => createImage(i + 1));
-
-images();
+const images = Array.from({ length: IMAGE_COUNT }, (_, i) => createImage(i + 1));
 
 export { images };
 

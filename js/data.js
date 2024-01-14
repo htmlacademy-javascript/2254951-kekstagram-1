@@ -35,11 +35,11 @@ const NAMES = ['Мария', 'Александр', 'Алексей', 'Игорь
 
 const getCommentId = createId();
 
-const createMessage = () => Array.from({length: getRandomInteger}, () => getRandomArrayElement(MESSAGES)).join(' ');
+const createMessage = () => Array.from({length: getRandomInteger(1, 2)}, () => getRandomArrayElement(MESSAGES)).join(' ');
 
 const createComment = () => ({
   id: getCommentId(),
-  avatar: `img/avatar-${getRandomInteger(AVATAR)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(AVATAR.MIN, AVATAR.MAX)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES),
 });

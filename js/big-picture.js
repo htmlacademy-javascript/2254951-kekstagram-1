@@ -60,7 +60,7 @@ const showBigPicture = (picture) => {
   bigPicture.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
 
-  bigPictureCancel.addEventListener('click', hideBigPicture);
+  bigPictureCancel.addEventListener('click', onCancelButtonClick);
   document.addEventListener('keydown', onPopupKeydown);
 
   hideComments();

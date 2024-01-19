@@ -2,10 +2,12 @@ import { isEscapeKey } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCancel = document.querySelector('.big-picture__cancel');
+const bigPictureCommentList = document.querySelector('.social__comments');
 const commentsCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 const commentTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
-const bigPictureCommentList = document.querySelector('.social__comments');
+
+const commentsShownMax = 5;
 
 const renderComment = ({ avatar, description, message}) => {
   const newComment = commentTemplate.cloneNode(true);
@@ -17,9 +19,37 @@ const renderComment = ({ avatar, description, message}) => {
   return newComment;
 };
 
-const renderComments = (comments) => {
-  const fragment = document.createDocumentFragment();
+const commentsAdd = (newComments) => {
+  bigPictureCommentList.textContent = '';
+  const commentListFragment = document.createDocumentFragment();
+  newComments.slice(0, commentsShownMax).forEach((newComment) => {
+    commentListFragment.appendChild(renderComment(newComment));
+  });
+  bigPictureCommentList.appendChild(commentListFragment);
+  if (newComments.slice(0, commentsShownMax).length === Number(commentsCount)) {
+    commentsLoader.classList.add('hidden');
+  }
+};
 
+const commentsLoad = (comments) => {
+  commentsLoader.classList.remove('hidden');
+  commentsCount.classList.remove('hidden');
+  commentsAdd(comments, commentsShownMax);
+  commentsLoader.addEventListener('click', () => {
+    commentsAdd(comments, commentsShownMax);
+  });
+  commentsCount.textContent = `${commentsShownMax} из ${comments.length} комментариев`;
+};
+
+const renderComments = (comments) => {
+  if (comments.length > commentsShownMax) {
+    commentsLoader.classList.add('hidden');
+    commentsCount.classList.add('hidden');
+  } else {
+    commentsLoad(comments, commentsShownMax);
+  }
+
+  const fragment = document.createDocumentFragment();
   comments.forEach((comment) => {
     const newComment = renderComment(comment);
 

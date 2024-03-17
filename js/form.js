@@ -1,3 +1,5 @@
+import { resetScale } from './image-scale.js';
+
 const HASHTAG_COUNT_MAX = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const HASHTAG_ERROR_TEXT = 'Хэш-тег должен начинаться со знака #, ' +
@@ -27,6 +29,7 @@ const openModal = () => {
 };
 
 const closeModal = () => {
+  resetScale();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);

@@ -2,10 +2,7 @@ import { resetScale } from './image-scale.js';
 
 const HASHTAG_COUNT_MAX = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
-const HASHTAG_ERROR_TEXT = 'Хэш-тег должен начинаться со знака #, ' +
-'содержать только кириллицу или латиницу, ' +
-'длину от 1-19 символов не включая знак #. ' +
-'Максимальное количество хэштегов: 5';
+const HASHTAG_ERROR_TEXT = `Хэш-тег должен начинаться со знака #, содержать только кириллицу или латиницу, длину от 1-19 символов не включая знак #. Максимальное количество хэштегов: ${HASHTAG_COUNT_MAX}`;
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');

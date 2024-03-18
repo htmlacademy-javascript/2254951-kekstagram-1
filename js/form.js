@@ -1,3 +1,4 @@
+import { resetEffect } from './effects.js';
 import { resetScale } from './image-scale.js';
 
 const HASHTAG_COUNT_MAX = 5;
@@ -27,6 +28,7 @@ const openModal = () => {
 
 const closeModal = () => {
   resetScale();
+  resetEffect();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);

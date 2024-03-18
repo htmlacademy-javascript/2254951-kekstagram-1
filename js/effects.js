@@ -1,8 +1,8 @@
+const effects = document.querySelector('.effects');
+const effectLevel = document.querySelector('.effect-level__value');
 const slider = document.querySelector('.effect-level__slider');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
 const imagePreview = document.querySelector('.img-upload__preview img');
-const effects = document.querySelector('.effects');
-const effectLevel = document.querySelector('.effect-level__value');
 const EFFECTS = [
   {
     name: 'none',

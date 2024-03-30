@@ -27,6 +27,8 @@ const openModal = () => {
 };
 
 const closeModal = () => {
+  form.reset();
+  pristine.reset();
   resetScale();
   resetEffect();
   overlay.classList.add('hidden');

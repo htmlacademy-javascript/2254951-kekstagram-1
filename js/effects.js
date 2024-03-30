@@ -1,8 +1,3 @@
-const effects = document.querySelector('.effects');
-const effectLevel = document.querySelector('.effect-level__value');
-const slider = document.querySelector('.effect-level__slider');
-const sliderContainer = document.querySelector('.img-upload__effect-level');
-const imagePreview = document.querySelector('.img-upload__preview img');
 const EFFECTS = [
   {
     name: 'none',
@@ -54,6 +49,11 @@ const EFFECTS = [
   },
 ];
 const DEFAULT_EFFECT = EFFECTS[0];
+const effects = document.querySelector('.effects');
+const effectLevel = document.querySelector('.effect-level__value');
+const slider = document.querySelector('.effect-level__slider');
+const sliderContainer = document.querySelector('.img-upload__effect-level');
+const imagePreview = document.querySelector('.img-upload__preview img');
 let chosenEffect = DEFAULT_EFFECT;
 
 const isDefault = () => chosenEffect === DEFAULT_EFFECT;

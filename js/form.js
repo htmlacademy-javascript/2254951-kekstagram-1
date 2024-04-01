@@ -76,11 +76,19 @@ pristine.addValidator(hashtagField, validateTags, HASHTAG_ERROR_TEXT);
 
 pristine.addValidator(commentField, validateDescription, 'Длина комментария больше 140 символов');
 
-const onFormSubmit = (evt) => {
-  evt.preventDefault();
-  pristine.validate();
+const onFormSubmit = (cb) => {
+  form.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+
+    if (isValid) {
+      await cb(new FormData(form));
+    }
+  });
 };
 
 form.addEventListener('submit', onFormSubmit);
 uploadFile.addEventListener('change', onFileInputChange);
 cancelUpload.addEventListener('click', onCancelButtonClick);
+
+export { onFormSubmit, closeModal };

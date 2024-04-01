@@ -66,7 +66,6 @@ const showSuccessMessage = () => {
 };
 
 const showErrorMessage = () => {
-  errorContainer.style.zIndex = 100;
   document.body.append(errorContainer);
 
   errorCloseButton.addEventListener('click', onErrorCloseButtonClick);
@@ -74,4 +73,4 @@ const showErrorMessage = () => {
   document.addEventListener('click', onDocumentWithErrorClick);
 };
 
-export { showErrorMessage, showSuccessMessage };
+export { showErrorMessage, showSuccessMessage, closeErrorModal };

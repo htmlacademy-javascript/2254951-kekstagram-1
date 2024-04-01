@@ -1,5 +1,6 @@
 import { resetEffect } from './effects.js';
 import { resetScale } from './image-scale.js';
+import { closeErrorModal } from './message.js';
 
 const HASHTAG_COUNT_MAX = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -26,20 +27,22 @@ const openModal = () => {
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-const closeModal = () => {
-  form.reset();
-  pristine.reset();
-  resetScale();
-  resetEffect();
-  overlay.classList.add('hidden');
-  body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeydown);
-};
-
-const isTextFieldFocused = () => document.activeElement === hashtagField || document.activeElement === commentField;
+function closeModal(evt) {
+  if (closeErrorModal) {
+    evt.preventDefault();
+  } else {
+    form.reset();
+    pristine.reset();
+    resetScale();
+    resetEffect();
+    overlay.classList.add('hidden');
+    body.classList.remove('modal-open');
+    document.removeEventListener('keydown', onDocumentKeydown);
+  }
+}
 
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !isTextFieldFocused()) {
+  if (evt.key === 'Escape') {
     evt.preventDefault();
     closeModal();
   }

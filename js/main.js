@@ -1,4 +1,3 @@
-//import { images } from './data.js';
 import { renderGallery } from './gallery.js';
 import { getData, sendData } from './api.js';
 import { showAlert } from './util.js';

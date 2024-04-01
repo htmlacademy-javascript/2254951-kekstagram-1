@@ -7,14 +7,14 @@ const errorContainerTemplate = document.querySelector('#error').content.querySel
 const errorContainer = errorContainerTemplate.cloneNode(true);
 const errorCloseButton = errorContainer.querySelector('.error__button');
 
-const onErrorModalEscKeydown = (evt) => {
+const onDocumentWithErrorKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeErrorModal();
   }
 };
 
-const onWindowWithErrorClick = (evt) => {
+const onDocumentWithErrorClick = (evt) => {
   if (!errorContainer.querySelector('.error__inner').contains(evt.target)) {
     evt.preventDefault();
     closeErrorModal();
@@ -28,18 +28,18 @@ const onErrorCloseButtonClick = () => {
 function closeErrorModal() {
   errorContainer.remove();
   errorCloseButton.removeEventListener('click', onErrorCloseButtonClick);
-  document.removeEventListener('keydown', onErrorModalEscKeydown);
-  document.removeEventListener('click', onWindowWithErrorClick);
+  document.removeEventListener('keydown', onDocumentWithErrorKeydown);
+  document.removeEventListener('click', onDocumentWithErrorClick);
 }
 
-const onSuccessModalEscKeydown = (evt) => {
+const onDocumentWithSuccessKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeSuccessModal();
   }
 };
 
-const onSuccessModalWindowClick = (evt) => {
+const onDocumentWithSuccessClick = (evt) => {
   if (!successContainer.querySelector('.success__inner').contains(evt.target)) {
     evt.preventDefault();
     closeSuccessModal();
@@ -53,17 +53,16 @@ const onSuccessCloseButtonClick = () => {
 function closeSuccessModal () {
   successContainer.remove();
   successCloseButton.removeEventListener('click', onSuccessCloseButtonClick);
-  document.removeEventListener('keydown', onSuccessModalEscKeydown);
-  document.removeEventListener('click', onSuccessModalWindowClick);
+  document.removeEventListener('keydown', onDocumentWithSuccessKeydown);
+  document.removeEventListener('click', onDocumentWithSuccessClick);
 }
 
 const showSuccessMessage = () => {
-  successContainer.style.zIndex = 100;
   document.body.append(successContainer);
 
   successCloseButton.addEventListener('click', onSuccessCloseButtonClick);
-  document.addEventListener('keydown', onSuccessModalEscKeydown);
-  document.addEventListener('click', onSuccessModalWindowClick);
+  document.addEventListener('keydown', onDocumentWithSuccessKeydown);
+  document.addEventListener('click', onDocumentWithSuccessClick);
 };
 
 const showErrorMessage = () => {
@@ -71,8 +70,8 @@ const showErrorMessage = () => {
   document.body.append(errorContainer);
 
   errorCloseButton.addEventListener('click', onErrorCloseButtonClick);
-  document.addEventListener('keydown', onErrorModalEscKeydown);
-  document.addEventListener('click', onWindowWithErrorClick);
+  document.addEventListener('keydown', onDocumentWithErrorKeydown);
+  document.addEventListener('click', onDocumentWithErrorClick);
 };
 
 export { showErrorMessage, showSuccessMessage };

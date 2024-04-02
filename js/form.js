@@ -27,6 +27,8 @@ const openModal = () => {
 };
 
 const closeModal = () => {
+  form.reset();
+  pristine.reset();
   resetScale();
   resetEffect();
   overlay.classList.add('hidden');
@@ -34,10 +36,8 @@ const closeModal = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
-const isTextFieldFocused = () => document.activeElement === hashtagField || document.activeElement === commentField;
-
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !isTextFieldFocused()) {
+  if (evt.key === 'Escape' && !document.querySelector('.error')) {
     evt.preventDefault();
     closeModal();
   }
@@ -74,11 +74,19 @@ pristine.addValidator(hashtagField, validateTags, HASHTAG_ERROR_TEXT);
 
 pristine.addValidator(commentField, validateDescription, 'Длина комментария больше 140 символов');
 
-const onFormSubmit = (evt) => {
-  evt.preventDefault();
-  pristine.validate();
+const onFormSubmit = (cb) => {
+  form.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+
+    if (isValid) {
+      await cb(new FormData(form));
+    }
+  });
 };
 
 form.addEventListener('submit', onFormSubmit);
 uploadFile.addEventListener('change', onFileInputChange);
 cancelUpload.addEventListener('click', onCancelButtonClick);
+
+export { onFormSubmit, closeModal, onDocumentKeydown };

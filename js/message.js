@@ -73,4 +73,4 @@ const showErrorMessage = () => {
   document.addEventListener('click', onDocumentWithErrorClick);
 };
 
-export { showErrorMessage, showSuccessMessage, closeErrorModal };
+export { showErrorMessage, showSuccessMessage };

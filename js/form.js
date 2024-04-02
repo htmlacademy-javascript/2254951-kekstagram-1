@@ -1,6 +1,5 @@
 import { resetEffect } from './effects.js';
 import { resetScale } from './image-scale.js';
-import { closeErrorModal } from './message.js';
 
 const HASHTAG_COUNT_MAX = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -27,22 +26,18 @@ const openModal = () => {
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-function closeModal(evt) {
-  if (closeErrorModal) {
-    evt.preventDefault();
-  } else {
-    form.reset();
-    pristine.reset();
-    resetScale();
-    resetEffect();
-    overlay.classList.add('hidden');
-    body.classList.remove('modal-open');
-    document.removeEventListener('keydown', onDocumentKeydown);
-  }
-}
+const closeModal = () => {
+  form.reset();
+  pristine.reset();
+  resetScale();
+  resetEffect();
+  overlay.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onDocumentKeydown);
+};
 
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape') {
+  if (evt.key === 'Escape' && !document.querySelector('.error')) {
     evt.preventDefault();
     closeModal();
   }
@@ -94,4 +89,4 @@ form.addEventListener('submit', onFormSubmit);
 uploadFile.addEventListener('change', onFileInputChange);
 cancelUpload.addEventListener('click', onCancelButtonClick);
 
-export { onFormSubmit, closeModal };
+export { onFormSubmit, closeModal, onDocumentKeydown };

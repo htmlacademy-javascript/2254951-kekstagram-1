@@ -1,10 +1,11 @@
 const PICTURES_COUNT = 10;
+const Filter = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed',
+};
 const imgFilters = document.querySelector('.img-filters');
-const defaultFilter = imgFilters.querySelector('#filter-default');
-const randomFilter = imgFilters.querySelector('#filter-random');
-const discussedFilter = imgFilters.querySelector('#filter-discussed');
-
-let currentFilter = defaultFilter;
+let currentFilter = Filter.DEFAULT;
 let pictures = [];
 
 const filterRandomly = () => Math.random() - 0.5;
@@ -14,9 +15,9 @@ const filterByComments = (a, b) =>
 
 const filterPosts = () => {
   switch (currentFilter) {
-    case randomFilter:
+    case Filter.RANDOM:
       return [...pictures].sort(filterRandomly).slice(0, PICTURES_COUNT);
-    case discussedFilter:
+    case Filter.DISCUSSED:
       return [...pictures].sort(filterByComments);
     default:
       return [...pictures];

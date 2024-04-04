@@ -89,4 +89,4 @@ form.addEventListener('submit', onFormSubmit);
 uploadFile.addEventListener('change', onFileInputChange);
 cancelUpload.addEventListener('click', onCancelButtonClick);
 
-export { onFormSubmit, closeModal, onDocumentKeydown };
+export { onFormSubmit, closeModal };

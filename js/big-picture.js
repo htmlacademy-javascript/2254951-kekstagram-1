@@ -23,13 +23,6 @@ const getComment = ({ avatar, name, message}) => {
 
 const renderComments = () => {
   const newCommentsCount = Math.min(currentComments.length, shownCommentsCount + COMMENTS_AMOUNT);
-  //if (shownCommentsCount >= comments.length) {
-  //  commentsLoader.classList.add('hidden');
-  //  shownCommentsCount = currentComments.length;
-  //} else {
-  //  commentsLoader.classList.remove('hidden');
-  //}
-
   const fragment = document.createDocumentFragment();
   currentComments.slice(shownCommentsCount, newCommentsCount).forEach((comment) => {
     const newComment = getComment(comment);
@@ -37,7 +30,6 @@ const renderComments = () => {
     fragment.append(newComment);
   });
   shownCommentsCount = newCommentsCount;
-  //bigPictureCommentList.textContent = '';
   if (currentComments.length === shownCommentsCount) {
     commentsLoader.classList.add('hidden');
   }

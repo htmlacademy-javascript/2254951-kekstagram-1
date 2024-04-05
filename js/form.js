@@ -39,8 +39,10 @@ const closeModal = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
+const isTextFieldFocused = () => document.activeElement === hashtagField || document.activeElement === commentField;
+
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !document.querySelector('.error')) {
+  if (evt.key === 'Escape' && !document.querySelector('.error') && !isTextFieldFocused()) {
     evt.preventDefault();
     closeModal();
   }

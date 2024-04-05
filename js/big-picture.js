@@ -13,9 +13,10 @@ let shownCommentsCount = 0;
 
 const getComment = ({ avatar, name, message}) => {
   const newComment = commentTemplate.cloneNode(true);
+  const newCommentImg = newComment.querySelector('.social__picture');
 
-  newComment.querySelector('.social__picture').src = avatar;
-  newComment.querySelector('.social__text').alt = name;
+  newCommentImg.src = avatar;
+  newCommentImg.alt = name;
   newComment.querySelector('.social__text').textContent = message;
 
   return newComment;
@@ -34,7 +35,8 @@ const renderComments = () => {
     commentsLoader.classList.add('hidden');
   }
   bigPictureCommentList.append(fragment);
-  commentsCount.textContent = `${shownCommentsCount} из ${currentComments.length} комментариев`;
+  // commentsCount.textContent = `${shownCommentsCount} из ${currentComments.length} комментариев`;
+  commentsCount.innerHTML = `${shownCommentsCount} из <span class="comments-count">${currentComments.length}</span> комментариев`;
 };
 
 const onCancelButtonClick = () => {

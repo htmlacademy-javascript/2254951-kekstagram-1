@@ -18,15 +18,6 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-const createId = () => {
-  let id = 0;
-
-  return () => {
-    id += 1;
-    return id;
-  };
-};
-
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 function debounce (callback, timeoutDelay = 500) {
@@ -38,4 +29,4 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-export { showAlert, createId, isEscapeKey, debounce };
+export { showAlert, isEscapeKey, debounce };

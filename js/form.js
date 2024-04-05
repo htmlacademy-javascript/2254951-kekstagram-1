@@ -103,7 +103,6 @@ const setUploadImageListener = () => {
   });
 };
 
-form.addEventListener('submit', onFormSubmit);
 cancelUpload.addEventListener('click', onCancelButtonClick);
 
 export { onFormSubmit, closeModal, setUploadImageListener };

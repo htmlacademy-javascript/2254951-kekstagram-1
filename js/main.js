@@ -6,6 +6,8 @@ import { showSuccessMessage, showErrorMessage } from './message.js';
 import { init, filterPosts } from './filter.js';
 import { setUploadImageListener } from './form.js';
 
+setUploadImageListener();
+
 onFormSubmit(async (data) => {
   try {
     await sendData(data);
@@ -25,4 +27,3 @@ try {
   showAlert(err.message);
 }
 
-setUploadImageListener();

@@ -4,7 +4,7 @@ import { showAlert, debounce } from './util.js';
 import { onFormSubmit, closeModal } from './form.js';
 import { showSuccessMessage, showErrorMessage } from './message.js';
 import { init, filterPosts } from './filter.js';
-import { setUploadImageListener } from './upload-preview.js';
+import { loadImagePreview } from './form.js';
 
 onFormSubmit(async (data) => {
   try {
@@ -25,4 +25,4 @@ try {
   showAlert(err.message);
 }
 
-setUploadImageListener();
+loadImagePreview();

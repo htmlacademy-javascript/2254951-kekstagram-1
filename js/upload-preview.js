@@ -4,7 +4,7 @@ const fileChooser = document.querySelector('.img-upload__input');
 const preview = document.querySelector('.img-upload__preview img');
 const effectsPreview = document.querySelectorAll('.effects__preview');
 
-const loadedImagePreview = () => {
+const setUploadImageListener = () => {
   fileChooser.addEventListener('change', () => {
     const uploadImage = fileChooser.files[0];
     const uploadImageName = uploadImage.name.toLowerCase();
@@ -14,10 +14,10 @@ const loadedImagePreview = () => {
     if (matches) {
       preview.src = URL.createObjectURL(uploadImage);
       effectsPreview.forEach((item) => {
-        item.style.backgroundImage = `url(${URL.createObjectURL(uploadImageName)})`;
+        item.style.backgroundImage = `url(${preview.src})`;
       });
     }
   });
 };
 
-export { loadedImagePreview };
+export { setUploadImageListener };

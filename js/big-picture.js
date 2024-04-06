@@ -35,7 +35,6 @@ const renderComments = () => {
     commentsLoader.classList.add('hidden');
   }
   bigPictureCommentList.append(fragment);
-  // commentsCount.textContent = `${shownCommentsCount} из ${currentComments.length} комментариев`;
   commentsCount.innerHTML = `${shownCommentsCount} из <span class="comments-count">${currentComments.length}</span> комментариев`;
 };
 

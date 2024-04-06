@@ -9,6 +9,7 @@ const HASHTAG_ERROR_TEXT = `Хэш-тег должен начинаться со
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
+const submitUpload = document.querySelector('#upload-submit');
 const cancelUpload = document.querySelector('#upload-cancel');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
@@ -81,7 +82,9 @@ const onFormSubmit = (cb) => {
     const isValid = pristine.validate();
 
     if (isValid) {
+      submitUpload.disabled = true;
       await cb(new FormData(form));
+      submitUpload.disabled = false;
     }
   });
 };
@@ -104,5 +107,4 @@ const setUploadImageListener = () => {
 };
 
 cancelUpload.addEventListener('click', onCancelButtonClick);
-
 export { onFormSubmit, closeModal, setUploadImageListener };

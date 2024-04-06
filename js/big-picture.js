@@ -13,9 +13,10 @@ let shownCommentsCount = 0;
 
 const getComment = ({ avatar, name, message}) => {
   const newComment = commentTemplate.cloneNode(true);
+  const newCommentImg = newComment.querySelector('.social__picture');
 
-  newComment.querySelector('.social__picture').src = avatar;
-  newComment.querySelector('.social__text').alt = name;
+  newCommentImg.src = avatar;
+  newCommentImg.alt = name;
   newComment.querySelector('.social__text').textContent = message;
 
   return newComment;
@@ -23,13 +24,6 @@ const getComment = ({ avatar, name, message}) => {
 
 const renderComments = () => {
   const newCommentsCount = Math.min(currentComments.length, shownCommentsCount + COMMENTS_AMOUNT);
-  //if (shownCommentsCount >= comments.length) {
-  //  commentsLoader.classList.add('hidden');
-  //  shownCommentsCount = currentComments.length;
-  //} else {
-  //  commentsLoader.classList.remove('hidden');
-  //}
-
   const fragment = document.createDocumentFragment();
   currentComments.slice(shownCommentsCount, newCommentsCount).forEach((comment) => {
     const newComment = getComment(comment);
@@ -37,12 +31,11 @@ const renderComments = () => {
     fragment.append(newComment);
   });
   shownCommentsCount = newCommentsCount;
-  //bigPictureCommentList.textContent = '';
   if (currentComments.length === shownCommentsCount) {
     commentsLoader.classList.add('hidden');
   }
   bigPictureCommentList.append(fragment);
-  commentsCount.textContent = `${shownCommentsCount} из ${currentComments.length} комментариев`;
+  commentsCount.innerHTML = `${shownCommentsCount} из <span class="comments-count">${currentComments.length}</span> комментариев`;
 };
 
 const onCancelButtonClick = () => {

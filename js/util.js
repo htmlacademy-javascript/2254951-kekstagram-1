@@ -18,24 +18,6 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
-const createId = () => {
-  let id = 0;
-
-  return () => {
-    id += 1;
-    return id;
-  };
-};
-
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 function debounce (callback, timeoutDelay = 500) {
@@ -47,4 +29,4 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-export { showAlert, getRandomInteger, getRandomArrayElement, createId, isEscapeKey, debounce };
+export { showAlert, isEscapeKey, debounce };

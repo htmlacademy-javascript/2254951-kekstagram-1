@@ -39,8 +39,10 @@ const closeModal = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
+const isTextFieldFocused = () => document.activeElement === hashtagField || document.activeElement === commentField;
+
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !document.querySelector('.error')) {
+  if (evt.key === 'Escape' && !document.querySelector('.error') && !isTextFieldFocused()) {
     evt.preventDefault();
     closeModal();
   }
@@ -84,7 +86,7 @@ const onFormSubmit = (cb) => {
   });
 };
 
-const loadImagePreview = () => {
+const setUploadImageListener = () => {
   fileChooser.addEventListener('change', () => {
     const uploadImage = fileChooser.files[0];
     const uploadImageName = uploadImage.name.toLowerCase();
@@ -101,7 +103,6 @@ const loadImagePreview = () => {
   });
 };
 
-form.addEventListener('submit', onFormSubmit);
 cancelUpload.addEventListener('click', onCancelButtonClick);
 
-export { onFormSubmit, closeModal, loadImagePreview };
+export { onFormSubmit, closeModal, setUploadImageListener };
